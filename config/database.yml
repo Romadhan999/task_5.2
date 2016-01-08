@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: db_task_5
+  pool: 5
+  username: romadhan999
+  password: 123qwerty';/.,
+

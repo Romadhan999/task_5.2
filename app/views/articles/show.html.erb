@@ -1,0 +1,54 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @article.content %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @article.status %>
+</p>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %><br>
+<%= link_to "Export XLS file", article_export_path(@article.id, format: "xls") %><br><br>
+Comments for article:<br>
+<% @comments.each do |comment| -%>
+ <p>
+   <%= comment.content %> 
+ </p>
+<% end -%>     
+
+<%= form_for [@article, @comment] do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %>
+        prohibited this comment from being saved: </h2>
+      <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>   
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :comment %><br>
+    <%= f.text_field :content %>
+    <%= flash[:notice] %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
+    <%= flash[:notice] %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

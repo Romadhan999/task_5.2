@@ -1,0 +1,14 @@
+xlsx = Axlsx::Package.new
+    wb = xlsx.workbook
+    wb.add_worksheet(name: "Articles") do |sheet|
+      sheet.add_row ["ID", "Title", "Content", "Status"]
+      @articles.each do |article|
+        sheet.add_row [article.id, article.title, article.content, article.status]
+      end
+    end
+    wb.add_worksheet(name: "Comments") do |sheet|
+      sheet.add_row ["ID", "Article ID", "Content"]
+      @comments.each do |comment|
+        sheet.add_row [comment.id, comment.article_id, comment.content, comment.status]
+      end
+    end    

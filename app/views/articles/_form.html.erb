@@ -1,0 +1,61 @@
+<%= form_for(@article) do |f| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+      <% @article.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <!-- Form Create New Article -->
+   <div class="row">
+     <div class="col-lg-6">
+         <form class="form-horizontal" style="background-color: #FFFFFF;">
+           <fieldset>
+             <div class="form-group">
+               <%= f.label :title, class:"col-lg-2 control-label-info" %>
+               <div class="col-lg-9">
+                 <%= f.text_field :title, class:"form-control", placeholder:"Title" %>
+               </div>
+             </div>
+
+             <div class="form-group">
+               <%= f.label :content, class:"col-lg-2 control-label-info" %>
+               <div class="col-md-9">
+                 <%= f.text_area :content, class:"form-control", rows: 5 %>
+               </div>
+             </div>
+              
+             <div class="form-group">
+               <%= f.label :status, class:"col-lg-2 control-label-info" %>
+                 <div class="col-md-9">
+                   <div class="radio radio-primary">
+                     <label>
+                       <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                         Active
+                     </label>
+                   </div>
+                   <div class="radio radio-primary">
+                     <label>
+                       <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                         Off
+                     </label>
+                   </div>
+                 </div>
+               </div>
+
+               <div class="form-group">
+                 <div class="col-lg-10 col-lg-offset-6">
+                   <button class="btn btn-flat btn-info"><%= link_to 'Cancel', articles_path %></button>
+                   <button type="submit" class="btn btn-raised btn-info">Submit</button>
+                 </div
+               </div>
+           </fieldset>
+         </form>
+     </div>
+   </div>
+<% end %>
